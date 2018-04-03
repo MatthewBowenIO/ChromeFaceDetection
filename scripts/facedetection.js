@@ -31,12 +31,12 @@ window.onload = () => {
     var video = document.createElement('video'), track;
     video.setAttribute('autoplay', true);
 
-    navigator.getUserMedia({ video: true, audio: false })
-    .then(stream => {
+    navigator.getUserMedia({ video: true, audio: false }, function(stream) {
         video.src = window.URL.createObjectURL(stream);
         track = stream.getTracks()[0];
-    }).catch(error => {
-        console.error('Error:', error);
+    }, function ()
+    {
+        console.warn("Error getting audio stream from getUserMedia")
     });
 
     var rotation = 0,
